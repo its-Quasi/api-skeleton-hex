@@ -1,9 +1,9 @@
 import { Product } from "../entities";
-import { ProductService } from "../ports/inbound";
+import { IProductService } from "../ports/inbound";
 import { ProductRepository } from "../ports/outbound";
 import { BadRequestException } from "@nestjs/common";
 
-export class ProductDomainService implements ProductService {
+export class ProductDomainService implements IProductService {
   constructor(private repository: ProductRepository) { }
 
   save(product: Product): Promise<Product> {
