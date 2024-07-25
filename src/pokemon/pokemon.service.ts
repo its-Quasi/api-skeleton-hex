@@ -51,7 +51,8 @@ export class PokemonService {
   }
 
   async remove(id: string) {
-    if (isValidObjectId(id)) return await this.pokemonRepository.findByIdAndDelete(id)
-    throw new BadRequestException('Invalid Mongo Id')
+    const { deletedCount } = await this.pokemonRepository.deleteOne({ _id: id })
+    if (!deletedCount) throw new NotFoundException(`The pokemon with ID: ${id} not found`)
+    return
   }
 }
