@@ -1,8 +1,8 @@
 import { Category } from '../models/Category';
-import { CategoryService } from '../ports/inbound';
+import { ICategoryService } from '../ports/inbound';
 import { CategoryRepository } from '../ports/outbound';
 
-export class CategoryDomainService implements CategoryService {
+export class CategoryDomainService implements ICategoryService {
 
   constructor(private readonly repository: CategoryRepository) { }
 

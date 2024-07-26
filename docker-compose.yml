@@ -1,12 +1,22 @@
 version: '3'
 
 services:
-  db:
+  mongo:
     image: mongo:5
-    restart: always
     ports:
       - 27017:27017
     environment:
-      MONGODB_DATABASE: nest-pokemon
+      MONGODB_DATABASE: categories
     volumes:
-      - ./mongo:/data/db
+      - ./mongo:/data/mongo
+  
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres:/data/postgres
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=products
