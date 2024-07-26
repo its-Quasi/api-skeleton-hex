@@ -1,4 +1,4 @@
-import { Category } from '../entities/Category';
+import { Category } from '../models/Category';
 import { CategoryService } from '../ports/inbound';
 import { CategoryRepository } from '../ports/outbound';
 

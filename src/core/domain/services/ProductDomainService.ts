@@ -1,4 +1,4 @@
-import { Product } from "../entities";
+import { Product } from "../models";
 import { IProductService } from "../ports/inbound";
 import { ProductRepository } from "../ports/outbound";
 import { BadRequestException } from "@nestjs/common";

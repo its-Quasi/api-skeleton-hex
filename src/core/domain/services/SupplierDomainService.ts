@@ -1,4 +1,4 @@
-import { Supplier } from "../entities";
+import { Supplier } from "../models";
 import { SupplierService } from "../ports/inbound";
 import { SupplierRepository } from "../ports/outbound";
 

@@ -1,3 +1,3 @@
-export { CategoryService } from "./categoryService"
+export { ICategoryService } from "./categoryService"
 export { IProductService } from "./ProductService"
-export { SupplierService } from "./SupplierService"
+export { ISupplierService } from "./SupplierService"

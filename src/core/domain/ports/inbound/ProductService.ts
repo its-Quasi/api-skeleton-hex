@@ -1,4 +1,4 @@
-import { Product } from "../../entities";
+import { Product } from "../../models";
 
 export interface IProductService {
   save(product: Product): Promise<Product>

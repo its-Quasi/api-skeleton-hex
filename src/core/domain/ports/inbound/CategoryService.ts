@@ -1,6 +1,6 @@
-import { Category } from "../../entities/Category";
+import { Category } from "../../models/Category";
 
-export interface CategoryService {
+export interface ICategoryService {
   findById(id: string): Promise<Category>;
   findAll(): Promise<Category[]>;
 }
