@@ -17,6 +17,7 @@ export class ProductService implements CreateProduct, UpdateProduct {
   ) { }
 
   async create(product: Product): Promise<Product> {
+    console.log(product)
     const { id: categoryId } = product.category
     const { id: supplierId } = product.supplier
     const category = await this.categoryService.findById(categoryId)
