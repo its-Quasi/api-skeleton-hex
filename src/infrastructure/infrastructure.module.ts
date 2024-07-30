@@ -4,35 +4,48 @@ import {
   ProductController,
   SupplierController
 } from './controllers';
+import { CoreModule } from 'src/core/core.module';
+import { CategoryMongoRepositoryAdapter } from './adapters/category/mongoRepository.adapter';
+import { ProductRepositoryAdapter } from './adapters/product/ProductRepositoryAdapter';
+import { SupplierRepositoryAdapter } from './adapters/supplier/SupplierRepositoryAdapter';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProductEntity } from './entities/ProductEntity';
-import { SupplierEntity } from './entities/SupplierEntity';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CategoryEntity, CategorySchema } from './entities/CategoryEntity';
-import { CoreModule } from 'src/core/core.module';
-// import { ProductRepositoryAdapter } from './adapters/product/ProductRepositoryAdapter';
+import { SupplierEntity } from './entities/SupplierEntity';
+import { ProductEntity } from './entities/ProductEntity';
 
 @Module({
   imports: [
-    CoreModule
-    // TypeOrmModule.forFeature([
-    //   ProductEntity,
-    //   SupplierEntity
-    // ]),
-    // MongooseModule.forFeature([
-    //   { name: CategoryEntity.name, schema: CategorySchema }
-    // ])
-  ],
-  providers: [
-
-  ],
-  exports: [
-
+    CoreModule.register({
+      modules: [InfrastructureModule],
+      adapters: {
+        categoryRepository: CategoryMongoRepositoryAdapter,
+        productRepository: ProductRepositoryAdapter,
+        supplierRepository: SupplierRepositoryAdapter
+      }
+    }),
+    TypeOrmModule.forFeature([
+      ProductEntity,
+      SupplierEntity
+    ]),
+    MongooseModule.forFeature([
+      { name: CategoryEntity.name, schema: CategorySchema }
+    ])
   ],
   controllers: [
     CategoryController,
     SupplierController,
     ProductController
+  ],
+  providers: [
+    CategoryMongoRepositoryAdapter,
+    ProductRepositoryAdapter,
+    SupplierRepositoryAdapter
+  ],
+  exports: [
+    CategoryMongoRepositoryAdapter,
+    ProductRepositoryAdapter,
+    SupplierRepositoryAdapter
   ]
 })
 export class InfrastructureModule { }

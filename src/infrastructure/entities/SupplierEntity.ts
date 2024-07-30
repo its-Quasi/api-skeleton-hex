@@ -1,14 +1,14 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity({ name: "suppliers" })
 export class SupplierEntity {
-  @PrimaryGeneratedColumn({ name: "id" })
+  @PrimaryGeneratedColumn()
   id: number
 
-  @Column()
+  @Column({ name: "company_name" })
   companyName: string;
 
-  @Column()
+  @Column({ name: "contact_name" })
   contactName: string;
 
   @Column()
@@ -17,7 +17,9 @@ export class SupplierEntity {
   @Column()
   city: string;
 
-  @Column()
+  @Column({
+    nullable: true
+  })
   postalCode?: string;
 
   @Column()

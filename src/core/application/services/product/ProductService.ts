@@ -16,10 +16,9 @@ export class ProductService implements CreateProduct, UpdateProduct {
     private supplierService: ISupplierService
   ) { }
 
-  async create(product: Product): Promise<Product> {
-    console.log(product)
-    const { id: categoryId } = product.category
-    const { id: supplierId } = product.supplier
+  async create(product: any): Promise<Product> {
+    const { categoryId } = product.category
+    const { supplierId } = product.supplier
     const category = await this.categoryService.findById(categoryId)
     if (!category) {
       throw new BadRequestException('Invalid Category')

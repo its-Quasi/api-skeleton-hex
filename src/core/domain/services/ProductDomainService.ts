@@ -10,7 +10,7 @@ export class ProductDomainService implements IProductService {
     if (this.validateProductPrice(product)) {
       return this.repository.save(product)
     }
-    throw new BadRequestException('Price must be positive')
+    throw new BadRequestException('Price must be positive ')
   }
 
   validateProductPrice(product: Product): boolean {
