@@ -3,17 +3,17 @@ import { Body, Controller, Inject, Post } from "@nestjs/common";
 import { CreateProduct } from "src/core/application/useCases/product/CreateProduct";
 import { UpdateProduct } from "src/core/application/useCases/product/UpdateProduct";
 import { PRODUCT_APPLICATION } from "src/core/core.module";
-
+import { CreateProductDto } from "../dto/product/CreateProductDto";
 
 type ProductAppType = UpdateProduct & CreateProduct
-@Controller('products')
+@Controller("products")
 export class ProductController {
   constructor(
     @Inject(PRODUCT_APPLICATION) private service: ProductAppType
   ) { }
 
   @Post()
-  createProduct(@Body() request: any) {
-    return this.service.create(request)
+  createProduct(@Body() product: CreateProductDto) {
+    return this.service.create(product)
   }
 }

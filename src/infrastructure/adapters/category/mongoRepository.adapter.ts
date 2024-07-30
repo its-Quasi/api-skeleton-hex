@@ -13,7 +13,6 @@ export class CategoryMongoRepositoryAdapter implements CategoryRepository {
   ) { }
 
   async findById(id: string): Promise<Category> {
-    console.log('MONGO ID: ', id)
     const category = await this.categoryModel.findOne({ _id: id })
     return category.toJSON()
   }

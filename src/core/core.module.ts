@@ -72,10 +72,11 @@ export class CoreModule {
         ProductApplicationProvider,
         CategoryServiceProvider,
         SupplierServiceProvider,
-        ProductServiceProvider
+        ProductServiceProvider,
       ],
       exports: [
-        PRODUCT_APPLICATION
+        PRODUCT_APPLICATION,
+        PRODUCT_SERVICE
       ]
     }
   }

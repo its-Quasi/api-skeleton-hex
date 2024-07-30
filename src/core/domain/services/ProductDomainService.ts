@@ -14,6 +14,11 @@ export class ProductDomainService implements IProductService {
   }
 
   validateProductPrice(product: Product): boolean {
+    console.log(product)
     return product.unitPrice > 0
+  }
+
+  findByCategoryId(categoryId: string): Promise<Product[]> {
+    return this.repository.findByCategoryId(categoryId)
   }
 }

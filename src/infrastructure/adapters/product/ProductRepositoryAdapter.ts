@@ -12,7 +12,15 @@ export class ProductRepositoryAdapter implements ProductRepository {
     @InjectRepository(ProductEntity) private repository: Repository<ProductEntity>
   ) { }
 
+  findByCategoryId(categoryId: string): Promise<Product[]> {
+    return this.repository.find({
+      where: { categoryId }
+    })
+  }
+
   save(product: Product): Promise<Product> {
     return this.repository.save(product)
   }
+
+
 }

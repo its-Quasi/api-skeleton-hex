@@ -4,7 +4,10 @@ import { CategoryRepository } from '../ports/outbound';
 
 export class CategoryDomainService implements ICategoryService {
 
-  constructor(private readonly repository: CategoryRepository) { }
+  constructor(
+
+    private repository: CategoryRepository
+  ) { }
 
   findById(id: string): Promise<Category> {
     return this.repository.findById(id)

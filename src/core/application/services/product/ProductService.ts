@@ -7,6 +7,7 @@ import {
   ICategoryService
 } from "src/core/domain/ports/inbound";
 import { BadRequestException } from "@nestjs/common";
+import { CreateProductDto } from "src/infrastructure/dto/product/CreateProductDto";
 
 export class ProductService implements CreateProduct, UpdateProduct {
 
@@ -16,9 +17,8 @@ export class ProductService implements CreateProduct, UpdateProduct {
     private supplierService: ISupplierService
   ) { }
 
-  async create(product: any): Promise<Product> {
-    const { categoryId } = product.category
-    const { supplierId } = product.supplier
+  async create(createDto: CreateProductDto): Promise<Product> {
+    const { categoryId, supplierId, unitPrice, name } = createDto
     const category = await this.categoryService.findById(categoryId)
     if (!category) {
       throw new BadRequestException('Invalid Category')
@@ -28,7 +28,8 @@ export class ProductService implements CreateProduct, UpdateProduct {
       throw new BadRequestException('Invalid Supplier')
     }
 
-    const toSave = new Product("name", category, supplier)
+    const toSave = new Product(name, categoryId, supplier)
+    toSave.unitPrice = unitPrice
     return this.productService.save(toSave)
   }
 

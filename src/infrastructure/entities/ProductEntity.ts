@@ -1,17 +1,12 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { SupplierEntity } from "./SupplierEntity";
-import { CategoryEntity } from "./CategoryEntity";
-
 @Entity({ name: "products" })
 export class ProductEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  productName: string;
-
-  @Column()
-  quantityPerUnit: number;
+  name: string;
 
   @Column()
   unitPrice: number;
@@ -22,7 +17,11 @@ export class ProductEntity {
   @Column()
   unitsOnOrder: number;
 
-  category: CategoryEntity;
+  @Column()
+  categoryId: string
+
+  @Column()
+  discontinued: boolean
 
   @ManyToOne(() => SupplierEntity)
   @JoinColumn({ name: "supplier_id" })

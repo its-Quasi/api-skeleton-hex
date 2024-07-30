@@ -1,20 +1,19 @@
-import { Category } from './Category';
 import { Supplier } from "./Supplier";
 
 export class Product {
 
   id: number;
   name: string;
-  category: Category;
+  categoryId: string;
   supplier: Supplier;
   unitPrice: number;
   unitsInStock: number;
   unitsOnOrder: number;
   discontinued: boolean;
 
-  constructor(name: string, category: Category, supplier: Supplier) {
+  constructor(name: string, categoryId: string, supplier: Supplier) {
     this.name = name
-    this.category = category
+    this.categoryId = categoryId
     this.supplier = supplier
     this.discontinued = false
     this.unitPrice = 0
