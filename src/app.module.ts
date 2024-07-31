@@ -1,12 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { InfrastructureModule } from './infrastructure/infrastructure.module';
-import { CoreModule } from './core/core.module';
+import { InfrastructureModule } from './modules/products/infrastructure/infrastructure.module';
+import { CoreModule } from './modules/products/core/core.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { SupplierEntity } from './infrastructure/entities/SupplierEntity';
-import { ProductEntity } from './infrastructure/entities/ProductEntity';
+import { SupplierEntity } from './modules/products/infrastructure/entities/SupplierEntity';
+import { ProductEntity } from './modules/products/infrastructure/entities/ProductEntity';
 @Module({
   imports: [
     CoreModule,
@@ -24,7 +22,5 @@ import { ProductEntity } from './infrastructure/entities/ProductEntity';
     }),
     MongooseModule.forRoot('mongodb://localhost:27017/categories')
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule { }
